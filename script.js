@@ -146,7 +146,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const mensaje = formData.get('mensaje') || "No especificado";
 
             const texto = `Hola! Soy ${nombre}.\nEstoy interesado en el servicio: ${tipo}.\nConsulta: ${mensaje}`;
-            const url = `https://wa.me/5491167078424?text=${encodeURIComponent(texto)}`;
+            const url = `https://wa.me/5491123985356?text=${encodeURIComponent(texto)}`;
 
             window.whatsappRedirectUrl = url;
 
