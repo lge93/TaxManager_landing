@@ -459,17 +459,18 @@ body {
 }
 
 .bullet-tooltip p {
-    font-size: 0.95rem;
-    color: var(--text-light);
-    margin-bottom: 15px;
-    line-height: 1.4;
-    font-weight: normal;
+    font-size: 1.1rem;
+    color: var(--text-dark);
+    margin-bottom: 12px;
+    line-height: 1.5;
+    font-weight: 500;
 }
 
 .tooltip-btn {
-    padding: 10px 16px;
-    font-size: 0.85rem;
+    padding: 8px 12px;
+    font-size: 0.75rem;
     width: 100%;
+    letter-spacing: 0.5px;
 }
 
 .banner-bullet svg {
