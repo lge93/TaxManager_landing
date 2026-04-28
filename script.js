@@ -116,22 +116,22 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // ================================
-    // 📩 Form + WhatsApp + Tracking
+    // 📩 Form + WhatsApp + Tracking + Apps Script
     // ================================
     const form = document.querySelector('.contact-form');
     const button = form ? form.querySelector('button[type="submit"]') : null;
 
     let submitted = false;
 
+    // 🔴 PEGÁ ACÁ TU URL REAL (/exec)
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwcKY3gfxrGSSvHAsUN0U2w-We-zy5YiWXLXuZxiVLcqWNuCpGex_V848jEB982mw17/exec";
+
     if (form) {
         form.addEventListener('submit', (e) => {
 
-            // Evitar doble envío
-            if (submitted) {
-                e.preventDefault();
-                return;
-            }
+            e.preventDefault(); // 🔥 CLAVE
 
+            if (submitted) return;
             submitted = true;
 
             if (button) {
@@ -141,63 +141,49 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const formData = new FormData(form);
 
-            const nombre = formData.get('nombre');
-            const tipo = formData.get('tipo');
-            const mensaje = formData.get('mensaje') || "No especificado";
+            // 📡 ENVÍO A APPS SCRIPT
+            fetch(SCRIPT_URL, {
+                method: "POST",
+                body: new URLSearchParams(formData)
+            })
+                .then(() => {
 
-            const texto = `Hola! Soy ${nombre}.\nEstoy interesado en el servicio: ${tipo}.\nConsulta: ${mensaje}`;
-            const url = `https://wa.me/5491123985356?text=${encodeURIComponent(texto)}`;
+                    // UX éxito
+                    form.style.display = "none";
+                    const success = document.getElementById("form-success");
+                    if (success) success.style.display = "block";
 
-            window.whatsappRedirectUrl = url;
+                    // 📊 Tracking conversión REAL para :contentReference[oaicite:1]{index=1}
+                    if (typeof gtag === "function") {
+                        gtag('event', 'conversion', {
+                            send_to: 'AW-18112164633/dYeRCPvZrqQcEJnmxrxD'
+                        });
+                    }
 
-            const btnRedirect = document.getElementById("whatsapp-redirect-btn");
-            if (btnRedirect) btnRedirect.href = url;
+                    // 📊 Evento GA4
+                    if (typeof gtag === "function") {
+                        gtag('event', 'lead_generated', {
+                            event_category: 'conversion',
+                            event_label: 'form_success'
+                        });
+                    }
 
-            // 📊 Tracking GA4 (si existe)
-            if (typeof gtag === "function") {
-                gtag('event', 'form_submit', {
-                    event_category: 'lead',
-                    event_label: 'contact_form'
-                });
-            }
+                    // 📲 WhatsApp
+                    const nombre = formData.get('nombre');
+                    const tipo = formData.get('tipo');
+                    const mensaje = formData.get('mensaje') || "No especificado";
 
-            setTimeout(() => {
-                if (button && submitted && form.style.display !== "none") {
-                    button.innerText = "Hubo una demora. Reintentar";
+                    const texto = `Hola! Soy ${nombre}.\nEstoy interesado en el servicio: ${tipo}.\nConsulta: ${mensaje}`;
+                    const url = `https://wa.me/5491123985356?text=${encodeURIComponent(texto)}`;
+
+                    window.open(url, '_blank');
+
+                })
+                .catch(() => {
+                    button.innerText = "Error. Reintentar";
                     button.disabled = false;
                     submitted = false;
-                }
-            }, 8000);
-        });
-    }
-
-    // ================================
-    // ✅ Submit success (iframe)
-    // ================================
-    const iframe = document.querySelector("iframe[name='hidden_iframe']");
-
-    if (iframe) {
-        iframe.addEventListener("load", () => {
-            if (submitted) {
-
-                if (form) form.style.display = "none";
-
-                const success = document.getElementById("form-success");
-                if (success) success.style.display = "block";
-
-                // 📊 Tracking conversión final
-                if (typeof gtag === "function") {
-                    gtag('event', 'lead_generated', {
-                        event_category: 'conversion',
-                        event_label: 'form_success'
-                    });
-                }
-
-                // Mejor UX: abrir WhatsApp en nueva pestaña
-                if (window.whatsappRedirectUrl) {
-                    window.open(window.whatsappRedirectUrl, '_blank');
-                }
-            }
+                });
         });
     }
 
