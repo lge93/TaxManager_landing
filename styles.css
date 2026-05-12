@@ -20,13 +20,21 @@
 }
 .hero .contact-form-container {
     flex: 1;
-    max-width: 380px;
+    max-width: 450px;
     width: 100%;
 }
 .hero .contact-form {
     border-radius: 8px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-    padding: 24px;
+    padding: 25px;
+}
+.hero .contact-form .form-group {
+    margin-bottom: 15px;
+}
+.hero .contact-form input, 
+.hero .contact-form select, 
+.hero .contact-form textarea {
+    padding: 12px 15px;
 }
 .footer-section.centered .contact-wrapper.centered-wrapper {
     grid-template-columns: 1fr;
