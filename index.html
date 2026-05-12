@@ -75,7 +75,7 @@
     </nav>
 
     <!-- Hero Section -->
-    <header class="hero">
+    <header class="hero" id="hero">
         <div class="hero-slideshow">
             <!-- Imágenes locales vinculadas de fondo -->
             <div class="slide active" style="background-image: url('foto1.webp');"></div>
@@ -86,19 +86,77 @@
             <div class="overlay"></div>
         </div>
         <div class="container hero-content animate-fade-in-up">
-            <h1>Contador online para Monotributistas y Responsables Inscriptos<span class="dot">.</span>
-            </h1>
-            <p class="hero-subtitle">
-                Olvidate de ARCA.
-                <br>Gestionamos tus impuestos para que estés siempre en regla.
-                <br>Pagá lo justo y evitá multas sin perder el tiempo.
-            </p>
-            <div class="hero-buttons">
-                <a href="#contacto" class="btn-primary btn-large">RECIBIR ASESORAMIENTO</a>
+            <div class="hero-text">
+                <h1>Contador online para Monotributistas y Responsables Inscriptos<span class="dot">.</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Olvidate de ARCA.
+                    <br>Gestionamos tus impuestos para que estés siempre en regla.
+                    <br>Pagá lo justo y evitá multas sin perder el tiempo.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#contacto" class="btn-primary btn-large">RECIBIR ASESORAMIENTO</a>
+                </div>
+                <p class="hero-note">
+                    <span>⚡ Respuesta rápida por WhatsApp. | ✔️ Diagnóstico sin costo. | ⭐ +100 Clientes </span>
+                </p>
             </div>
-            <p class="hero-note">
-                <span>⚡ Respuesta rápida por WhatsApp. | ✔️ Diagnóstico sin costo. | ⭐ +100 Clientes </span>
-            </p>
+
+            <div class="contact-form-container" id="hero-form">
+                <form class="contact-form"
+                    action="https://script.google.com/macros/s/AKfycbwoz4sNjx7mBmNEP7xagL32bHFBeezNvQQLeDnW15xy0k61MYQjP12cnvDeTU7HdVs8qQ/exec"
+                    method="POST" target="hidden_iframe" onsubmit="submitted=true;">
+
+                    <!-- UTMs ocultas -->
+                    <input type="hidden" name="source" id="utm_source">
+                    <input type="hidden" name="medium" id="utm_medium">
+                    <input type="hidden" name="campaign" id="utm_campaign">
+                    <input type="hidden" name="term" id="utm_term">
+
+                    <div class="form-group row">
+                        <input type="text" name="nombre" placeholder="Tu nombre" required>
+                        <input type="email" name="email" placeholder="Tu email" required>
+                    </div>
+
+                    <div class="form-group row">
+                        <input type="tel" name="whatsapp" placeholder="Tu WhatsApp (Ej: 11 1234 5678)" required>
+                    </div>
+
+                    <div class="form-group">
+                        <select id="plan-selector" name="tipo" required>
+                            <option value="" disabled selected>¿Qué tipo de negocio tenés?</option>
+                            <option value="Monotributista">Soy Monotributista / Freelancer</option>
+                            <option value="Responsable Inscripto">Soy Responsable Inscripto</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <textarea name="mensaje" placeholder="¿De qué tema te gustaría que nos ocupemos? (Opcional)"
+                            rows="3"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-primary btn-block">
+                        Quiero hablar con un contador
+                    </button>
+
+                    <p style="text-align: center; font-size: 0.85rem; margin-top: 15px; color: var(--text-light);">
+                        🔒 Tus datos están seguros. Te respondemos en menos de 2 horas.
+                    </p>
+                </form>
+
+                <!-- iframe oculto para evitar redirección -->
+                <iframe name="hidden_iframe" style="display:none;"></iframe>
+
+                <!-- mensaje de éxito -->
+                <div id="form-success" style="display:none; text-align:center; margin-top:20px;">
+                    <p style="font-size: 1.2rem; font-weight: 500; margin-bottom: 15px;">✅ ¡Gracias! Tu solicitud fue
+                        enviada.</p>
+                    <p style="color: var(--text-light); margin-bottom: 20px;">Para continuar, por favor escribinos por
+                        WhatsApp para que un asesor empiece a revisar tu caso.</p>
+                    <a id="whatsapp-redirect-btn" href="#" target="_blank" class="btn-primary"
+                        rel="noopener noreferrer">Continuar a WhatsApp</a>
+                </div>
+            </div>
         </div>
     </header>
 
@@ -449,71 +507,15 @@
     </section>
 
     <!-- Footer Form -->
-    <footer id="contacto" class="footer-section">
-        <div class="container contact-wrapper">
+    <footer id="contacto" class="footer-section centered">
+        <div class="container contact-wrapper centered-wrapper">
             <div class="contact-info">
                 <span class="subtitle">— CONTACTO DIRECTO</span>
                 <h2>Resolvé tu situación con ARCA hoy mismo<span class="dot">.</span></h2>
                 <p>Completá el formulario en 30 segundos y te indicamos qué hacer paso a paso.
                     <strong>Sin costo y sin compromiso.</strong>
                 </p>
-
-            </div>
-
-            <div class="contact-form-container">
-                <form class="contact-form"
-                    action="https://script.google.com/macros/s/AKfycbwoz4sNjx7mBmNEP7xagL32bHFBeezNvQQLeDnW15xy0k61MYQjP12cnvDeTU7HdVs8qQ/exec"
-                    method="POST" target="hidden_iframe" onsubmit="submitted=true;">
-
-                    <!-- UTMs ocultas -->
-                    <input type="hidden" name="source" id="utm_source">
-                    <input type="hidden" name="medium" id="utm_medium">
-                    <input type="hidden" name="campaign" id="utm_campaign">
-                    <input type="hidden" name="term" id="utm_term">
-
-                    <div class="form-group row">
-                        <input type="text" name="nombre" placeholder="Tu nombre" required>
-                        <input type="email" name="email" placeholder="Tu email" required>
-                    </div>
-
-                    <div class="form-group row">
-                        <input type="tel" name="whatsapp" placeholder="Tu WhatsApp (Ej: 11 1234 5678)" required>
-                    </div>
-
-                    <div class="form-group">
-                        <select id="plan-selector" name="tipo" required>
-                            <option value="" disabled selected>¿Qué tipo de negocio tenés?</option>
-                            <option value="Monotributista">Soy Monotributista / Freelancer</option>
-                            <option value="Responsable Inscripto">Soy Responsable Inscripto</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <textarea name="mensaje" placeholder="¿De qué tema te gustaría que nos ocupemos? (Opcional)"
-                            rows="3"></textarea>
-                    </div>
-
-                    <button type="submit" class="btn-primary btn-block">
-                        Quiero hablar con un contador
-                    </button>
-
-                    <p style="text-align: center; font-size: 0.85rem; margin-top: 15px; color: var(--text-light);">
-                        🔒 Tus datos están seguros. Te respondemos en menos de 2 horas.
-                    </p>
-                </form>
-
-                <!-- iframe oculto para evitar redirección -->
-                <iframe name="hidden_iframe" style="display:none;"></iframe>
-
-                <!-- mensaje de éxito -->
-                <div id="form-success" style="display:none; text-align:center; margin-top:20px;">
-                    <p style="font-size: 1.2rem; font-weight: 500; margin-bottom: 15px;">✅ ¡Gracias! Tu solicitud fue
-                        enviada.</p>
-                    <p style="color: var(--text-light); margin-bottom: 20px;">Para continuar, por favor escribinos por
-                        WhatsApp para que un asesor empiece a revisar tu caso.</p>
-                    <a id="whatsapp-redirect-btn" href="#" target="_blank" class="btn-primary"
-                        rel="noopener noreferrer">Continuar a WhatsApp</a>
-                </div>
+                <a href="#hero" class="btn-primary btn-large">Quiero hablar con un contador</a>
             </div>
         </div>
 
@@ -525,7 +527,7 @@
     </footer>
 
     <!-- Floating WhatsApp Button -->
-    <a href="#contacto" class="whatsapp-float" aria-label="Ir al formulario de contacto">
+    <a href="https://wa.me/5491123985356?text=Hola!%20Necesito%20asesoramiento%20contable.%20Gracias!" target="_blank" class="whatsapp-float" aria-label="Hablar por WhatsApp">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="34" height="34" fill="currentColor">
             <path
                 d="M12.031 0C5.405 0 .016 5.39.016 12.016c0 2.111.551 4.148 1.589 5.945L.032 23.95l6.155-1.574a11.968 11.968 0 005.844 1.518h.005c6.626 0 12.016-5.39 12.016-12.016S18.657 0 12.031 0zm0 21.895a9.986 9.986 0 01-5.068-1.378l-.364-.216-3.766.963.98-3.664-.236-.376A9.972 9.972 0 012.011 12.016C2.011 6.495 6.505 2.001 12.031 2.001A10.024 10.024 0 0122.046 12.016c0 5.52-4.494 10.015-10.015 10.015v-.136zM17.53 14.542c-.302-.152-1.782-.876-2.057-.978-.276-.1-.477-.152-.678.152-.201.302-.778.978-.953 1.178-.175.2-.352.226-.653.076-.302-.15-1.272-.465-2.42-1.488-.894-.795-1.5-1.776-1.675-2.078-.176-.302-.018-.465.132-.616.136-.135.302-.35.452-.526.15-.175.201-.302.302-.503.1-.2.05-.376-.025-.526-.076-.15-.678-1.62-.928-2.22-.244-.585-.494-.505-.678-.515-.175-.01-.377-.01-.578-.01-.201 0-.528.075-.803.376-.276.302-1.054 1.026-1.054 2.502s1.08 2.898 1.23 3.098c.15.2 2.115 3.208 5.12 4.5.717.307 1.277.49 1.713.626.718.23 1.37.197 1.884.12.576-.088 1.782-.725 2.032-1.428.252-.702.252-1.302.176-1.428-.074-.125-.276-.2-.578-.352z">
