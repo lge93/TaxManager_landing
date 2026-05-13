@@ -65,3 +65,4 @@
         justify-content: center;
     }
 }
+@media (min-width: 993px) { .mobile-only { display: none !important; } }
